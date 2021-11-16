@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Create Schema') {
             steps {
-                script {
+                script{
                     if (env.CREATE_SCHEMA == "true") {
                         sh "bash jenkins/create_schema.sh" 
                     }
