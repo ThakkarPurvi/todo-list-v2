@@ -12,19 +12,18 @@ def home():
     app.logger.info(f"Tasks: {all_tasks}")
     return render_template('index.html', title="Home", all_tasks=all_tasks)["tasks"])
 
-@app.route('/create/task', methods=['GET','POST'])
-def create_task():
-    form = TaskForm()
-
-    if request.method == "POST":
-        response = requests.post(
-            "http://todo-app-backend:5000/create/task",
-            data={"description": form.description.data}}
-        )
-        return redirect(url_for('home'))
-
-    return render_template("create_task.html", title="Add a new Task", form=form)
-
+#@app.route('/create/task', methods=['GET','POST'])
+#def create_task():
+#    form = TaskForm()
+#
+#    if request.method == "POST":
+#        new_task = Tasks(description=form.description.data)
+#        db.session.add(new_task)
+#        db.session.commit()
+#        return redirect(url_for('home'))
+#
+#    return render_template("create_task.html", title="Add a new Task", form=form)
+#
 #@app.route('/read/allTasks')
 #def read_tasks():
 #    all_tasks = Tasks.query.all()
