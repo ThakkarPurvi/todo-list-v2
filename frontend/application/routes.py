@@ -4,10 +4,11 @@ from flask import render_template, request, redirect, url_for, jsonify
 import requests
 
 backend_host = "todo-app_backend:5000"
+
 @app.route('/')
 @app.route('/home')
 def home():
-    all_tasks = requests.get("http://todo-app-backend:5000/read/allTasks").json()
+    all_tasks = requests.get("http://todo-app_backend:5000/read/allTasks").json()
     return render_template('index.html', title="Home", all_tasks=all_tasks)
 
 #@app.route('/create/task', methods=['GET','POST'])
