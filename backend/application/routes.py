@@ -24,6 +24,16 @@ def read_tasks():
         )
     return jsonify(tasks_dict)
 
+@app.route('/read/task/<int:id>', methods=['GET'])
+def read_task(id):
+    task = Tasks.query.get(id)
+    tasks_dict = {
+                    "id": task.id,
+                    "description": task.description,
+                    "completed": task.completed
+                }
+    return jsonify(tasks_dict)
+
 @app.route('/update/task/<int:id>', methods=['PUT'])
 def update_task(id):
     package = request.json
@@ -31,7 +41,7 @@ def update_task(id):
     task.description = package["description"]
     db.session.commit()
     return Response(f"Updated task (ID: {id}) with description: {task.description}", mimetype='text/plain')
-
+    
 @app.route('/delete/task/<int:id>', methods=['DELETE'])
 def delete_task(id):
     task = Tasks.query.get(id)
